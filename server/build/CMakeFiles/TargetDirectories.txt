@@ -1,0 +1,3 @@
+/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles/server.dir
+/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles/edit_cache.dir
+/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles/rebuild_cache.dir
