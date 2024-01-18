@@ -21,8 +21,8 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(message => alert(message))
+            .then(response => response.json())
+            .then(message => console.log(message))
             .catch(error => console.error('Error:', error));
         }
     </script>
