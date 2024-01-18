@@ -7,7 +7,7 @@ int main(void)
   Server svr;
 
   svr.Get("/hi", [](const Request& req, Response& res) {
-    res.set_content("{\"message\":\"Hello World!\"}", "text/plain");
+    res.set_content("{\"message\":\"Hello World!\"}", "text/json");
   });
 
   // Match the request path against a regular expression
