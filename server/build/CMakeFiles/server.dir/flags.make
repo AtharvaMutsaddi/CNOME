@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I"/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/include"
 
 CXX_FLAGS = -std=gnu++11
 

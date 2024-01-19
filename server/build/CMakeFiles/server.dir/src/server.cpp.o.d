@@ -1,7 +1,7 @@
-CMakeFiles/server.dir/server.cpp.o: \
- /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/server.cpp \
+CMakeFiles/server.dir/src/server.cpp.o: \
+ /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/src/server.cpp \
  /usr/include/stdc-predef.h \
- /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/httplib.h \
+ /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/include/httplib.h \
  /usr/include/arpa/inet.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -312,4 +312,5 @@ CMakeFiles/server.dir/server.cpp.o: \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/bits/unordered_map.h \
  /usr/include/c++/11/unordered_set \
- /usr/include/c++/11/bits/unordered_set.h
+ /usr/include/c++/11/bits/unordered_set.h \
+ /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/include/analytics.h

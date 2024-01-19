@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/server.cpp" "CMakeFiles/server.dir/server.cpp.o" "gcc" "CMakeFiles/server.dir/server.cpp.o.d"
+  "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/analytics.cpp" "CMakeFiles/server.dir/src/analytics.cpp.o" "gcc" "CMakeFiles/server.dir/src/analytics.cpp.o.d"
+  "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/server.cpp" "CMakeFiles/server.dir/src/server.cpp.o" "gcc" "CMakeFiles/server.dir/src/server.cpp.o.d"
   )
 
 # Targets to which this target links.
