@@ -129,6 +129,30 @@ server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+src/JSONresponsehandler.o: src/JSONresponsehandler.cpp.o
+.PHONY : src/JSONresponsehandler.o
+
+# target to build an object file
+src/JSONresponsehandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o
+.PHONY : src/JSONresponsehandler.cpp.o
+
+src/JSONresponsehandler.i: src/JSONresponsehandler.cpp.i
+.PHONY : src/JSONresponsehandler.i
+
+# target to preprocess a source file
+src/JSONresponsehandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/JSONresponsehandler.cpp.i
+.PHONY : src/JSONresponsehandler.cpp.i
+
+src/JSONresponsehandler.s: src/JSONresponsehandler.cpp.s
+.PHONY : src/JSONresponsehandler.s
+
+# target to generate assembly for a file
+src/JSONresponsehandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/JSONresponsehandler.cpp.s
+.PHONY : src/JSONresponsehandler.cpp.s
+
 src/analytics.o: src/analytics.cpp.o
 .PHONY : src/analytics.o
 
@@ -152,6 +176,30 @@ src/analytics.s: src/analytics.cpp.s
 src/analytics.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/analytics.cpp.s
 .PHONY : src/analytics.cpp.s
+
+src/compressGene.o: src/compressGene.cpp.o
+.PHONY : src/compressGene.o
+
+# target to build an object file
+src/compressGene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/compressGene.cpp.o
+.PHONY : src/compressGene.cpp.o
+
+src/compressGene.i: src/compressGene.cpp.i
+.PHONY : src/compressGene.i
+
+# target to preprocess a source file
+src/compressGene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/compressGene.cpp.i
+.PHONY : src/compressGene.cpp.i
+
+src/compressGene.s: src/compressGene.cpp.s
+.PHONY : src/compressGene.s
+
+# target to generate assembly for a file
+src/compressGene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/compressGene.cpp.s
+.PHONY : src/compressGene.cpp.s
 
 src/server.o: src/server.cpp.o
 .PHONY : src/server.o
@@ -186,9 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
+	@echo "... src/JSONresponsehandler.o"
+	@echo "... src/JSONresponsehandler.i"
+	@echo "... src/JSONresponsehandler.s"
 	@echo "... src/analytics.o"
 	@echo "... src/analytics.i"
 	@echo "... src/analytics.s"
+	@echo "... src/compressGene.o"
+	@echo "... src/compressGene.i"
+	@echo "... src/compressGene.s"
 	@echo "... src/server.o"
 	@echo "... src/server.i"
 	@echo "... src/server.s"

@@ -9,4 +9,5 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(server ${SOURCE_FILES} ${HEADER_FILES})
 
 target_include_directories(server PRIVATE include)
-target_link_libraries(server PRIVATE pthread)
+target_link_libraries(server PRIVATE pthread z) 
+#pthread for threading and z for zlib

@@ -69,10 +69,24 @@ include CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/server.dir/flags.make
 
+CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o: ../src/JSONresponsehandler.cpp
+CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o -MF CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o.d -o CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o -c "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/JSONresponsehandler.cpp"
+
+CMakeFiles/server.dir/src/JSONresponsehandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/JSONresponsehandler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/JSONresponsehandler.cpp" > CMakeFiles/server.dir/src/JSONresponsehandler.cpp.i
+
+CMakeFiles/server.dir/src/JSONresponsehandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/JSONresponsehandler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/JSONresponsehandler.cpp" -o CMakeFiles/server.dir/src/JSONresponsehandler.cpp.s
+
 CMakeFiles/server.dir/src/analytics.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/analytics.cpp.o: ../src/analytics.cpp
 CMakeFiles/server.dir/src/analytics.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/analytics.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/analytics.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/analytics.cpp.o -MF CMakeFiles/server.dir/src/analytics.cpp.o.d -o CMakeFiles/server.dir/src/analytics.cpp.o -c "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/analytics.cpp"
 
 CMakeFiles/server.dir/src/analytics.cpp.i: cmake_force
@@ -83,10 +97,24 @@ CMakeFiles/server.dir/src/analytics.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/analytics.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/analytics.cpp" -o CMakeFiles/server.dir/src/analytics.cpp.s
 
+CMakeFiles/server.dir/src/compressGene.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/compressGene.cpp.o: ../src/compressGene.cpp
+CMakeFiles/server.dir/src/compressGene.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/compressGene.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/compressGene.cpp.o -MF CMakeFiles/server.dir/src/compressGene.cpp.o.d -o CMakeFiles/server.dir/src/compressGene.cpp.o -c "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/compressGene.cpp"
+
+CMakeFiles/server.dir/src/compressGene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/compressGene.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/compressGene.cpp" > CMakeFiles/server.dir/src/compressGene.cpp.i
+
+CMakeFiles/server.dir/src/compressGene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/compressGene.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/compressGene.cpp" -o CMakeFiles/server.dir/src/compressGene.cpp.s
+
 CMakeFiles/server.dir/src/server.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/server.cpp.o: ../src/server.cpp
 CMakeFiles/server.dir/src/server.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/server.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/src/server.cpp.o -MF CMakeFiles/server.dir/src/server.cpp.o.d -o CMakeFiles/server.dir/src/server.cpp.o -c "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/server.cpp"
 
 CMakeFiles/server.dir/src/server.cpp.i: cmake_force
@@ -99,17 +127,21 @@ CMakeFiles/server.dir/src/server.cpp.s: cmake_force
 
 # Object files for target server
 server_OBJECTS = \
+"CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o" \
 "CMakeFiles/server.dir/src/analytics.cpp.o" \
+"CMakeFiles/server.dir/src/compressGene.cpp.o" \
 "CMakeFiles/server.dir/src/server.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
+server: CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o
 server: CMakeFiles/server.dir/src/analytics.cpp.o
+server: CMakeFiles/server.dir/src/compressGene.cpp.o
 server: CMakeFiles/server.dir/src/server.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

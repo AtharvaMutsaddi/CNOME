@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/server.dir/src/analytics.cpp.o CMakeFiles/server.dir/src/server.cpp.o -o server  -lpthread 
+/usr/bin/c++ CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o CMakeFiles/server.dir/src/analytics.cpp.o CMakeFiles/server.dir/src/compressGene.cpp.o CMakeFiles/server.dir/src/server.cpp.o -o server  -lpthread -lz 

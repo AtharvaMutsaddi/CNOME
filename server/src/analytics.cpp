@@ -1,11 +1,10 @@
 #include "analytics.h" 
-
 const char* mutations[5]={
-  "./mutations/cancer.txt",
-  "./mutations/cysticfibrosis.txt",
-  "./mutations/hemophilia.txt",
-  "./mutations/huntington.txt",
-  "./mutations/nf1.txt"
+  "cancer.txt",
+  "cysticfibrosis.txt",
+  "hemophilia.txt",
+  "huntington.txt",
+  "nf1.txt"
 };
 std::vector<int> KMP_search(std::string genome,std::string mutation){
   std::vector<int> ans;
@@ -32,29 +31,17 @@ bool is_valid_genome(std:: string genome){
   }
   return true;
 }
-std::string inputfile_error_message(){
-  return "{\"message\":\"input genome file may be corrupted or in a file format not supported... please ensure gene sequence is a valid combination of A,C,T,G\"}";
-}
-std::string KMP_analytics_response(std::unordered_map<std::string,bool> mp){
-  std::stringstream response;
-  response<<"{";
-  response<<"\"cancer\""<<":"<<mp[mutations[0]]<<",";
-  response<<"\"cysticfibrosis\""<<":"<<mp[mutations[1]]<<",";
-  response<<"\"hemophilia\""<<":"<<mp[mutations[2]]<<",";
-  response<<"\"huntington\""<<":"<<mp[mutations[3]]<<",";
-  response<<"\"nf1\""<<":"<<mp[mutations[4]];
-  response<<"}";
-  return response.str();
-}
 
 std::string mutations_analysis(std::string genome){
   genome.erase(std::remove(genome.begin(), genome.end(), '\n'), genome.end());
   if(!is_valid_genome(genome)){
-    return inputfile_error_message();
+    return get_inputfile_error_message();
   }
-  std::unordered_map<std::string,bool> mp;
+  std::unordered_map<std::string,int> mp;
   for(int i=0;i<5;i++){
-    std::ifstream t(mutations[i]);
+    char MUTATION_PATH_PREFIX[512]="../mutations/";
+    char * mutation_file_path=strcat(MUTATION_PATH_PREFIX,mutations[i]);
+    std::ifstream t(mutation_file_path);
     std::stringstream buffer;
     buffer << t.rdbuf();
     std::string mutation=buffer.str();
@@ -62,5 +49,21 @@ std::string mutations_analysis(std::string genome){
     std::vector<int> v=KMP_search(genome,mutation);
     mp[mutations[i]]=(v.size()>0);
   }
-  return KMP_analytics_response(mp);
+  return get_mapped_analysis_response(mp);
+}
+std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
+  std::unordered_map<std::string,int> freq_mapping;
+  std::string kmer;
+  int n=genome.length();
+  for(int i=0;i<n-k;i++){
+    kmer=genome.substr(i,k);
+    freq_mapping[compressAndEncodeBase64(kmer)]+=1;
+  }
+  for(auto i: freq_mapping){
+    if(i.second<=1){
+      freq_mapping.erase(i.first);
+    }
+  }
+  freq_mapping["totalKmers"]=n-k+1;
+  return freq_mapping;
 }

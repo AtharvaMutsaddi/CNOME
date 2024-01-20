@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/JSONresponsehandler.cpp" "CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o" "gcc" "CMakeFiles/server.dir/src/JSONresponsehandler.cpp.o.d"
   "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/analytics.cpp" "CMakeFiles/server.dir/src/analytics.cpp.o" "gcc" "CMakeFiles/server.dir/src/analytics.cpp.o.d"
+  "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/compressGene.cpp" "CMakeFiles/server.dir/src/compressGene.cpp.o" "gcc" "CMakeFiles/server.dir/src/compressGene.cpp.o.d"
   "/home/dell/Desktop/COEP /TY/sem 6/SEMP/SE-Mini-Proj/server/src/server.cpp" "CMakeFiles/server.dir/src/server.cpp.o" "gcc" "CMakeFiles/server.dir/src/server.cpp.o.d"
   )
 

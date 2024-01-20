@@ -313,4 +313,7 @@ CMakeFiles/server.dir/src/server.cpp.o: \
  /usr/include/c++/11/bits/unordered_map.h \
  /usr/include/c++/11/unordered_set \
  /usr/include/c++/11/bits/unordered_set.h \
- /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/include/analytics.h
+ /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/include/analytics.h \
+ /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/include/compressGene.h \
+ /usr/include/zlib.h /usr/include/zconf.h \
+ /home/dell/Desktop/COEP\ /TY/sem\ 6/SEMP/SE-Mini-Proj/server/include/JSONresponsehandler.h
