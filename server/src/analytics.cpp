@@ -52,6 +52,7 @@ std::string mutations_analysis(std::string genome){
   return get_mapped_analysis_response(mp);
 }
 std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
+  genome.erase(std::remove(genome.begin(), genome.end(), '\n'), genome.end());
   std::unordered_map<std::string,int> freq_mapping;
   std::string kmer;
   int n=genome.length();
@@ -59,11 +60,13 @@ std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
     kmer=genome.substr(i,k);
     freq_mapping[compressAndEncodeBase64(kmer)]+=1;
   }
-  for(auto i: freq_mapping){
-    if(i.second<=1){
-      freq_mapping.erase(i.first);
+  for (auto it = freq_mapping.begin(); it != freq_mapping.end();) {
+        if (it->second <= 1) {
+            it = freq_mapping.erase(it);
+        } else {
+            ++it;
+        }
     }
-  }
   freq_mapping["totalKmers"]=n-k+1;
   return freq_mapping;
 }

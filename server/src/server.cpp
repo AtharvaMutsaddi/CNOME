@@ -15,6 +15,10 @@ int main(void)
         res.set_header("Access-Control-Allow-Headers", "Content-Type");
         const auto& file = req.get_file_value("file");
         std::string result=mutations_analysis(file.content);
+        // for(auto i: KMer_analysis(file.content,21)){
+        //   std::cout<<i.first<<":"<<i.second<<std::endl;
+        // }
+        // std::cout<<get_mapped_analysis_response(KMer_analysis(file.content,21))<<std::endl;
         res.set_content(result, "text/json");
     });
   
