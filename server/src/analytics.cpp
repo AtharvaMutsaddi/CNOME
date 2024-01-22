@@ -68,5 +68,8 @@ std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
         }
     }
   freq_mapping["totalKmers"]=n-k+1;
+  if(n-k+1<0){
+    freq_mapping["totalKmers"]=0;
+  }
   return freq_mapping;
 }

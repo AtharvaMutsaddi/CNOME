@@ -18,7 +18,7 @@ int main(void)
         // for(auto i: KMer_analysis(file.content,21)){
         //   std::cout<<i.first<<":"<<i.second<<std::endl;
         // }
-        // std::cout<<get_mapped_analysis_response(KMer_analysis(file.content,21))<<std::endl;
+        std::cout<<get_mapped_analysis_response(KMer_analysis(file.content,21))<<std::endl;
         res.set_content(result, "text/json");
     });
   
