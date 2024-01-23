@@ -71,3 +71,73 @@ std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
   }
   return freq_mapping;
 }
+
+double levenshtein_dist(std::string genome1,std::string genome2){
+  long long int n=genome1.length();
+  long long int m=genome2.length();
+  std::vector<std::vector<long long int>> dp(n,std::vector<long long int>(m,0));
+  for(long long int i=0;i<n;i++){
+    dp[i][m]=n-i;
+  }
+  for(long long int i=0;i<m;i++){
+    dp[n][i]=m-i;
+  }
+  dp[n][m]=0;
+  for(long long int i=n-1;i>=0;i--){
+    for(long long int j=m-1;j>=0;j--){
+      if(genome1[i]==genome2[j]){
+        dp[i][j]=dp[i+1][j+1];
+      }
+      else{
+        dp[i][j]=1+std::max(dp[i+1][j],std::max(dp[i][j+1],dp[i+1][j+1]));
+      }
+    }
+  }
+  long long min_changes=dp[0][0];
+  long long max_size=std::max(n,m);
+  return (1-(static_cast<double>(min_changes)/max_size))*100.0;
+}
+
+double jaccard_index(std::string genome1,std::string genome2){
+  std::unordered_set<std::string> set1, set2;
+    int k=21;
+    for (int i = 0; i <= genome1.length() - k; ++i) {
+        set1.insert(genome1.substr(i, k));
+    }
+
+    for (int i = 0; i <= genome2.length() - k; ++i) {
+        set2.insert(genome2.substr(i, k));
+    }
+
+    // Calculate Jaccard Index
+    std::unordered_set<std::string> intersection, unionSet;
+    for (const auto& kmer : set1) {
+        if (set2.count(kmer)) {
+            intersection.insert(kmer);
+        }
+        unionSet.insert(kmer);
+    }
+
+    for (const auto& kmer : set2) {
+        unionSet.insert(kmer);
+    }
+    return (static_cast<double>(intersection.size()) / unionSet.size())*100.0;
+}
+
+double sequence_identity(std::string genome1,std::string genome2){
+  
+    int length = std::min(genome1.length(),genome2.length());
+    int matchedPositions = 0;
+
+    // Count matched positions
+    for (int i = 0; i < length; ++i) {
+        if (genome1[i] == genome1[i]) {
+            matchedPositions++;
+        }
+    }
+
+    // Calculate sequence identity percentage
+    double sequenceIdentity = (static_cast<double>(matchedPositions) / length) * 100.0;
+
+    return sequenceIdentity;
+}
