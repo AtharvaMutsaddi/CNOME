@@ -1,7 +1,7 @@
 // src/pages/MutationDetection.tsx
 import React, { useRef, useState } from "react";
 import { Button, Container, Typography, Input } from "@mui/material";
-import { uploadFile } from "../services/api";
+import { uploadFileMutations as uploadFile } from "../services/api";
 import MutationResponse from "../response-models/MutationResponse";
 
 const MutationDetection: React.FC = () => {
