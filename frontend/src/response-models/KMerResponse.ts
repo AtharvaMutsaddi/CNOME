@@ -1,3 +1,3 @@
-export default interface MyObject {
+export default interface KMerResponse {
   [key: string]: number;
 }

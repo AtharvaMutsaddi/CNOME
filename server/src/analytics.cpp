@@ -59,7 +59,7 @@ std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
     freq_mapping[compressAndEncodeBase64(kmer)]+=1;
   }
   for (auto it = freq_mapping.begin(); it != freq_mapping.end();) {
-        if (it->second <= 1) {
+        if (it->second <= 5) {
             it = freq_mapping.erase(it);
         } else {
             ++it;
