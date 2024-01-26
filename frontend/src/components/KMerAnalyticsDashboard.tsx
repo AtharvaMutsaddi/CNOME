@@ -26,8 +26,8 @@ const KMerAnalyticsDashboard: React.FC<KMerAnalyticsDashboardProps> = ({
         .map(([, value]) => value);
       const frequencies =filteredValues;
       const histPlotData = {
-        width: 800,
-        height: 800,
+        width: 500,
+        height: 500,
         data: frequencies,
       };
       setHistogramData(histPlotData);

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as d3 from "d3";
 import { NumberValue } from "d3";
 
@@ -14,8 +14,8 @@ type HistogramProps = {
 
 export const Histogram = ({ width, height, data }: HistogramProps) => {
   const axesRef = useRef(null);
-  const tooltipRef = useRef<SVGTextElement>(null);
-  const boundsWidth = width - MARGIN.right - MARGIN.left;
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const boundsWidth = width - MARGIN.right - MARGIN.left + 5;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const xScale = useMemo(() => {
@@ -23,7 +23,7 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
     console.log(max);
     return d3
       .scaleLinear()
-      .domain([4, Math.min(max+1, 1000)])
+      .domain([4, Math.min(max + 1, 1000)])
       .range([10, boundsWidth]);
   }, [data, width]);
 
@@ -55,17 +55,18 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
     const yAxisGenerator = d3.axisLeft(yScale);
     svgElement.append("g").call(yAxisGenerator);
   }, [xScale, yScale, boundsHeight]);
+
+  const [mousePosn,setMousePosn]=useState<{x:number,y:number}>({x:0,y:0});
   const handleMouseOver = (
     event: React.MouseEvent<SVGRectElement, MouseEvent>,
     value: number
   ) => {
     const tooltip = d3.select(tooltipRef.current);
-    console.log("Mouse Over:", value);
+    console.log(event.pageX);
+    console.log(event.pageY);
     tooltip.transition().duration(200).style("opacity", 0.9);
-    tooltip
-      .html(value.toString())
-      .style("left", event.pageX + "px")
-      .style("top", event.pageY + "px");
+    tooltip.html(value.toString())
+    setMousePosn({x:event.pageX,y:event.pageY})
   };
 
   const handleMouseOut = () => {
@@ -82,7 +83,7 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
         width={
           xScale(bucket.x1 as NumberValue) -
           xScale(bucket.x0 as NumberValue) -
-          BUCKET_PADDING
+          BUCKET_PADDING * 0.25
         }
         y={yScale(bucket.length)}
         height={boundsHeight - yScale(bucket.length)}
@@ -93,21 +94,46 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
   });
 
   return (
-    <svg width={width} height={height}>
-      <g
-        width={boundsWidth}
-        height={boundsHeight}
-        transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
-      >
-        {allRects}
-        <text ref={tooltipRef} style={{ opacity: 0, pointerEvents: "none" }} />
-      </g>
-      <g
-        width={boundsWidth}
-        height={boundsHeight}
-        ref={axesRef}
-        transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+    <div style={{ display: "flex", alignItems:"center",justifyContent:'center' }}>
+      <svg width={width} height={height}>
+        <g
+          width={boundsWidth}
+          height={boundsHeight}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+        >
+          {allRects}
+        </g>
+        <g
+          width={boundsWidth}
+          height={boundsHeight}
+          ref={axesRef}
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
+        />
+      </svg>
+      <div
+        ref={tooltipRef}
+        style={{
+          opacity: 0,
+          pointerEvents: "none",
+          backgroundColor: "#fff",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Increased shadow for a card-like effect
+          padding: "16px", // Increased padding for more space
+          borderRadius: "8px", // Rounded corners
+          zIndex: 9999,
+          position:"absolute",
+          top:`${mousePosn.y}px`,
+          left:`${mousePosn.x}px`,
+        }}
       />
-    </svg>
+      <div style={{
+          backgroundColor: "#fff",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", 
+          padding: "16px", 
+          borderRadius: "8px", 
+        }}>
+        <h1>Histogram</h1>
+        <p>Showing you the ranges of frequency of occurrence of repeated KMers of a fixed size. Guves insights on the rate of repeatedness</p>
+      </div>
+    </div>
   );
 };
