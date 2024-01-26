@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import KMerResponse from "../response-models/KMerResponse";
 import { Histogram } from "./Histogram";
+import { PieChart } from "./PieChart";
 
 interface KMerAnalyticsDashboardProps {
   data: KMerResponse;
@@ -10,13 +11,33 @@ type HistogramDataType = {
   height: number;
   data: number[];
 };
+type DataItem = {
+  name: string;
+  value: number;
+};
+type PieChartDataType = {
+  width: number;
+  height: number;
+  data: DataItem[];
+};
 const KMerAnalyticsDashboard: React.FC<KMerAnalyticsDashboardProps> = ({
   data,
 }) => {
   const [histogramData, setHistogramData] = useState<HistogramDataType | null>(
     null
   );
-  const [pieData, setPieData] = useState<any>({});
+  const [pieData, setPieData] = useState<PieChartDataType | null>(null);
+  const getTopGenes = (data: KMerResponse): DataItem[] => {
+    const dataArray = Object.entries(data);
+    const filteredData = dataArray.filter(
+      ([key, value]) => key !== "totalKmers" && value > 20
+    );
+    let top: DataItem[] = filteredData.map(([gene, frequency]) => ({
+      name:gene,
+      value:frequency,
+    }));
+    return top;
+  };
   useEffect(() => {
     if (data) {
       // Process data for charts
@@ -24,67 +45,43 @@ const KMerAnalyticsDashboard: React.FC<KMerAnalyticsDashboardProps> = ({
       const filteredValues = Object.entries(data)
         .filter(([key]) => key !== "totalKmers")
         .map(([, value]) => value);
-      const frequencies =filteredValues;
+      const frequencies = filteredValues;
       const histPlotData = {
         width: 500,
         height: 500,
         data: frequencies,
       };
       setHistogramData(histPlotData);
-      // // Histogram (Bar Chart)
-      // const histogramData = {
-      //   labels,
-      //   datasets: [
-      //     {
-      //       label: "Frequency",
-      //       data: frequencies,
-      //       backgroundColor: "rgba(75,192,192,0.2)",
-      //       borderColor: "rgba(75,192,192,1)",
-      //       borderWidth: 1,
-      //     },
-      //   ],
-      // };
-
-      // // Pie Chart
-      // const sortedData = Object.entries(data).sort(([, a], [, b]) => b - a);
-      // const top5 = sortedData.slice(0, 5);
-      // const others = sortedData.slice(5);
-
-      // const pieChartData = {
-      //   labels: [...top5.map(([string]) => string), "Others"],
-      //   datasets: [
-      //     {
-      //       data: [
-      //         ...top5.map(([, frequency]) => frequency),
-      //         others.reduce((acc, [, frequency]) => acc + frequency, 0),
-      //       ],
-      //       backgroundColor: [
-      //         "red",
-      //         "blue",
-      //         "green",
-      //         "yellow",
-      //         "orange",
-      //         "gray", // or any color for "Others"
-      //       ],
-      //     },
-      //   ],
-      // };
-      // console.log(histogramData);
-      // console.log(pieChartData);
-      // setChartData({ histogramData, pieChartData });
+      const piePlotData = {
+        width: 1200,
+        height: 400,
+        data: getTopGenes(data),
+      };
+      setPieData(piePlotData);
     }
   }, [data]);
 
   return (
-    <div>
-      {histogramData && (
-        <Histogram
-          data={histogramData.data}
-          width={histogramData.width}
-          height={histogramData.height}
-        ></Histogram>
-      )}
-    </div>
+    <>
+      <div>
+        {histogramData && (
+          <Histogram
+            data={histogramData.data}
+            width={histogramData.width}
+            height={histogramData.height}
+          ></Histogram>
+        )}
+      </div>
+      <div>
+        {pieData && (
+          <PieChart
+            data={pieData.data}
+            width={pieData.width}
+            height={pieData.height}
+          />
+        )}
+      </div>
+    </>
   );
 };
 
