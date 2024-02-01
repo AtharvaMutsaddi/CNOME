@@ -6,9 +6,12 @@ import Home from "./pages/Home";
 import MutationDetection from "./pages/MutationDetection";
 import KMerAnalytics from "./pages/KMerAnalytics";
 import GeneticSimilarity from "./pages/GeneticSimilarity";
+import { GeneProvider } from "./context/GeneContext";
+import ViewGene from "./pages/ViewGene";
 function App() {
   return (
-    <Router>
+    <GeneProvider>    
+      <Router>
       <div className="App">
         <Navbar />
         <Routes>
@@ -16,9 +19,12 @@ function App() {
           <Route path="/genetic-mutations" element={<MutationDetection/>} />
           <Route path="/kmer-analysis" element={<KMerAnalytics/>} />
           <Route path="/similarity" element={<GeneticSimilarity/>} />
+          <Route path="/viewGene" element={<ViewGene/>} />
         </Routes>
       </div>
     </Router>
+    </GeneProvider>
+
   );
 }
 

@@ -29,15 +29,18 @@ const KMerAnalyticsDashboard: React.FC<KMerAnalyticsDashboardProps> = ({
   const [pieData, setPieData] = useState<PieChartDataType | null>(null);
   const getTopGenes = (data: KMerResponse): DataItem[] => {
     const dataArray = Object.entries(data);
-    const filteredData = dataArray.filter(
-      ([key, value]) => key !== "totalKmers" && value > 20
+    const sortedData = dataArray
+      .filter(([key, value]) => key !== "totalKmers" && value > 20)
+      .sort((a, b) => b[1] - a[1]);
+    const top: DataItem[] = sortedData.slice(0, Math.min(10, sortedData.length)).map(
+      ([gene, frequency]) => ({
+        name: gene,
+        value: frequency,
+      })
     );
-    let top: DataItem[] = filteredData.map(([gene, frequency]) => ({
-      name:gene,
-      value:frequency,
-    }));
     return top;
   };
+  
   useEffect(() => {
     if (data) {
       // Process data for charts

@@ -1,4 +1,3 @@
-// src/pages/KMerAnalytics.tsx
 import React, { useRef, useState } from "react";
 import { Button, Container, Typography, Input } from "@mui/material";
 import { uploadFileKMer as uploadFile } from "../services/api";

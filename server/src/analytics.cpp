@@ -52,6 +52,9 @@ std::string mutations_analysis(std::string genome){
 std::unordered_map<std::string,int> KMer_analysis(std::string genome, int k){
   genome.erase(std::remove(genome.begin(), genome.end(), '\n'), genome.end());
   std::unordered_map<std::string,int> freq_mapping;
+  if(!is_valid_genome(genome)){
+    return freq_mapping;
+  }
   std::string kmer;
   int n=genome.length();
   for(int i=0;i<n-k;i++){

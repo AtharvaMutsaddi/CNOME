@@ -20,7 +20,6 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
 
   const xScale = useMemo(() => {
     const max = Math.max(...data);
-    console.log(max);
     return d3
       .scaleLinear()
       .domain([4, Math.min(max + 1, 1000)])
@@ -62,8 +61,6 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
     value: number
   ) => {
     const tooltip = d3.select(tooltipRef.current);
-    console.log(event.pageX);
-    console.log(event.pageY);
     tooltip.transition().duration(200).style("opacity", 0.9);
     tooltip.html(value.toString())
     setMousePosn({x:event.pageX,y:event.pageY})
@@ -71,7 +68,6 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
 
   const handleMouseOut = () => {
     const tooltip = d3.select(tooltipRef.current);
-    console.log("Mouse Out");
     tooltip.transition().duration(500).style("opacity", 0);
   };
   const allRects = buckets.map((bucket, i) => {
@@ -132,7 +128,7 @@ export const Histogram = ({ width, height, data }: HistogramProps) => {
           borderRadius: "8px", 
         }}>
         <h1>Histogram</h1>
-        <p>Showing you the ranges of frequency of occurrence of repeated KMers of a fixed size. Guves insights on the rate of repeatedness</p>
+        <p>Showing you the ranges of frequency of occurrence of repeated KMers of a fixed size. Gives insights on the rate of repeatedness</p>
       </div>
     </div>
   );

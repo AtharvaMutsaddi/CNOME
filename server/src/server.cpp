@@ -27,7 +27,5 @@ int main(void)
         std::string result=get_mapped_analysis_response(KMer_analysis(file.content,21));
         res.set_content(result, "text/json"); });
 
-  
-
   svr.listen("localhost", 1234);
 }
