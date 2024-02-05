@@ -14,11 +14,11 @@ export const uploadFileMutations = async (file:File)=>{
     throw error;
   }
 }
-export const uploadFileKMer = async (file:File)=>{
+export const uploadFileKMer = async (file:File,kmerSize:number)=>{
   try {
     const formData = new FormData();
     formData.append("file", file);
-    const response = await instance.post('/kmer',formData)
+    const response = await instance.post(`/kmer/${kmerSize}`,formData)
     return response.data;
   } catch (error) {
     throw error;

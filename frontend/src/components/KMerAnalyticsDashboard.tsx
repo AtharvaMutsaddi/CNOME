@@ -30,7 +30,7 @@ const KMerAnalyticsDashboard: React.FC<KMerAnalyticsDashboardProps> = ({
   const getTopGenes = (data: KMerResponse): DataItem[] => {
     const dataArray = Object.entries(data);
     const sortedData = dataArray
-      .filter(([key, value]) => key !== "totalKmers" && value > 20)
+      .filter(([key, value]) => key !== "totalKmers")
       .sort((a, b) => b[1] - a[1]);
     const top: DataItem[] = sortedData.slice(0, Math.min(10, sortedData.length)).map(
       ([gene, frequency]) => ({

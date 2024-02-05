@@ -18,13 +18,15 @@ int main(void)
         std::string result=mutations_analysis(file.content);
         res.set_content(result, "text/json"); });
 
-  svr.Post("/kmer", [&](const Request &req, Response &res)
+  svr.Post("/kmer/:kmerSize", [&](const Request &req, Response &res)
            {
+            std::cout<<req.path_params.at("kmerSize")<<std::endl;
+            int k=stoi(req.path_params.at("kmerSize"));
         res.set_header("Access-Control-Allow-Origin", "*");
         res.set_header("Access-Control-Allow-Methods", "POST");
         res.set_header("Access-Control-Allow-Headers", "Content-Type");
         const auto& file = req.get_file_value("file");
-        std::string result=get_mapped_analysis_response(KMer_analysis(file.content,21));
+        std::string result=get_mapped_analysis_response(KMer_analysis(file.content,k));
         res.set_content(result, "text/json"); });
 
   svr.listen("localhost", 1234);

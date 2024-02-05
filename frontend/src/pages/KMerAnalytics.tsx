@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, Typography, Input } from "@mui/material";
+import { Button, Container, Typography, Input, TextField } from "@mui/material";
 import { uploadFileKMer as uploadFile } from "../services/api";
 import KMerResponse from "../response-models/KMerResponse";
 import KMerAnalyticsDashboard from "../components/KMerAnalyticsDashboard";
@@ -7,15 +7,15 @@ import KMerAnalyticsDashboard from "../components/KMerAnalyticsDashboard";
 const KMerAnalytics: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [analysis, setAnalysis] = useState<KMerResponse | null>(null);
+  const [kmerSize, setKmerSize] = useState<number>(0);
 
-  const handleuploadFile = async () => {
+  const handleUploadFile = async () => {
     const file = fileInputRef.current?.files?.[0];
     if (file) {
       try {
-        const resp = await uploadFile(file);
-        setAnalysis(prevData=>{
-          return resp;
-        });
+        // Assuming your uploadFile function supports passing kmerSize as an argument
+        const resp = await uploadFile(file, kmerSize);
+        setAnalysis(resp);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -29,7 +29,14 @@ const KMerAnalytics: React.FC = () => {
           KMer Analysis
         </Typography>
         <Input type="file" inputRef={fileInputRef} style={{ blockSize: "3rem" }} />
-        <Button variant="contained" onClick={handleuploadFile}>
+        <TextField
+          label="Size of KMers"
+          type="number"
+          value={kmerSize}
+          onChange={(e) => setKmerSize(Number(e.target.value))}
+          style={{ blockSize: "3rem", margin: "1rem 0" }}
+        />
+        <Button variant="contained" onClick={handleUploadFile}>
           Upload
         </Button>
       </Container>
@@ -39,4 +46,3 @@ const KMerAnalytics: React.FC = () => {
 };
 
 export default KMerAnalytics;
-
