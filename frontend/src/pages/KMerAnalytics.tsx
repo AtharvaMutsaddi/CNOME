@@ -13,7 +13,6 @@ const KMerAnalytics: React.FC = () => {
     const file = fileInputRef.current?.files?.[0];
     if (file) {
       try {
-        // Assuming your uploadFile function supports passing kmerSize as an argument
         const resp = await uploadFile(file, kmerSize);
         setAnalysis(resp);
       } catch (error) {

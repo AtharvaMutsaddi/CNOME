@@ -14,6 +14,17 @@ export const uploadFileMutations = async (file:File)=>{
     throw error;
   }
 }
+export const uploadFileSim = async (file1:File,file2:File)=>{
+  try {
+    const formData = new FormData();
+    formData.append("file1", file1);
+    formData.append("file2", file2);
+    const response = await instance.post('/sim',formData)
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 export const uploadFileKMer = async (file:File,kmerSize:number)=>{
   try {
     const formData = new FormData();

@@ -20,3 +20,10 @@ std::string get_mapped_analysis_response(std::unordered_map<std::string,int> mp)
   }
   return final_response;
 }
+std::string lcs_response(std::string lcs){
+  std::stringstream res;
+  res<<"{\"Longest Common Subsequence\":";
+  res<<lcs;
+  res<<"}";
+  return res.str();
+}
