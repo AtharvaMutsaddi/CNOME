@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Button, Container, Typography, Input, TextField } from "@mui/material";
 import { uploadFileSim as uploadFile } from "../services/api";
+import { Barplot } from "../components/Barplot";
 const GeneticSimilarity = () => {
   const fileInputRef1 = useRef<HTMLInputElement>(null);
   const fileInputRef2 = useRef<HTMLInputElement>(null);
@@ -39,9 +40,7 @@ const GeneticSimilarity = () => {
       </Button>
       {
         sim &&
-        <>
-          <div>similarity mil gaya bhai</div>
-        </>
+        <Barplot width={800} height={700} data={sim}></Barplot>
       }
     </div>
   );
