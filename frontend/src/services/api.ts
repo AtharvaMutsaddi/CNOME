@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCachedAnalytics, postCachedAnalytics } from "./cache";
 
 const instance = axios.create({
   baseURL: "http://localhost:1234",
@@ -6,9 +7,29 @@ const instance = axios.create({
 
 export const uploadFileMutations = async (file:File)=>{
   try {
+    try {
+      const cachedResponse=await getCachedAnalytics(file,"Mutation");
+      console.log("cached response:",cachedResponse);
+      if(cachedResponse.analytics){
+        console.log("Successfully got cached analytics:",cachedResponse.analytics);
+        return cachedResponse.analytics;
+      }
+    } catch (error) {
+      throw error;
+    }
+    console.log("Cannot find in cache...")
     const formData = new FormData();
     formData.append("file", file);
     const response = await instance.post('/mutations',formData)
+    //insert new record into db;
+    let analytics:string;
+    analytics=JSON.stringify(response.data);
+    try {
+      const postResponse=await postCachedAnalytics(file,"Mutation",analytics);
+      console.log(postResponse);
+    } catch (error) {
+      throw error;
+    }
     return response.data;
   } catch (error) {
     throw error;
