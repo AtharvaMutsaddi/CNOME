@@ -1,2 +1,2 @@
-/node_modules
-sqlconnect.json
+node_modules/
+connect.json
