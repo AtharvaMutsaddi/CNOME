@@ -1,6 +1,6 @@
 // src/pages/MutationDetection.tsx
 import React, { useRef, useState } from "react";
-import { Button, Container, Typography, Input } from "@mui/material";
+import { Button, Container, Typography, Input, Card } from "@mui/material";
 import { uploadFileMutations as uploadFile } from "../services/api";
 import MutationResponse from "../response-models/MutationResponse";
 
@@ -34,38 +34,49 @@ const MutationDetection: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="h3" gutterBottom>
-        Mutation Detection
-      </Typography>
-      <Input
-        type="file"
-        inputRef={fileInputRef}
-        style={{ blockSize: "3rem" }}
-      />
-      <Button variant="contained" onClick={handleuploadFile}>
-        Upload
-      </Button>
-      {detection ? (
-        <>
-          <h1>Detected Mutations:</h1>
-          {Object.entries(detection).filter(([key, value]) => value === 1)
-            .length > 0 ? (
-            <ul>
-              {Object.entries(detection)
-                .filter(([key, value]) => value === 1)
-                .map(([key]) => (
-                  <li key={key}>{key}</li>
-                ))}
-            </ul>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "80vh",
+      }}
+    >
+      <Card elevation={6}>
+        <Container>
+          <Typography variant="h1" align="center">
+            Mutation Detection
+          </Typography>
+          <Input
+            type="file"
+            inputRef={fileInputRef}
+            style={{ blockSize: "3rem" }}
+          />
+          <Button variant="contained" onClick={handleuploadFile}>
+            Upload
+          </Button>
+          {detection ? (
+            <>
+              <h1>Detected Mutations:</h1>
+              {Object.entries(detection).filter(([key, value]) => value === 1)
+                .length > 0 ? (
+                <ul>
+                  {Object.entries(detection)
+                    .filter(([key, value]) => value === 1)
+                    .map(([key]) => (
+                      <li key={key}>{key}</li>
+                    ))}
+                </ul>
+              ) : (
+                <p>No mutations detected</p>
+              )}
+            </>
           ) : (
-            <p>No mutations detected</p>
+            <h1>Upload Gene File to get Detection Results</h1>
           )}
-        </>
-      ) : (
-        <h1>Upload Gene File to get Detection Results</h1>
-      )}
-    </Container>
+        </Container>
+      </Card>
+    </div>
   );
 };
 

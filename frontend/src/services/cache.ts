@@ -1,11 +1,5 @@
 import axios from "axios";
-import * as XXH from 'xxhashjs'; 
-
-function generateHash(data: string): string {
-  const hash = XXH.h32(0xabcd); // Initialize with seed 0xabcd
-  hash.update(data);
-  return hash.digest().toString(16); // Convert to hexadecimal string
-}
+import generateHash from "./hashgene"
 
 const instance = axios.create({
   baseURL: "http://localhost:6969",

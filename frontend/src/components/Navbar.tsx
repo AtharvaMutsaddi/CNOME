@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+
 const pages = ['Home'];
 
 function Navbar() {
@@ -26,10 +27,10 @@ function Navbar() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ py: 2 }}> {/* Add padding to the toolbar */}
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h4" // Change typography variant to h4
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
@@ -41,9 +42,10 @@ function Navbar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              fontSize: '5rem', // Increase font size
             }}
           >
-            LOGO
+            CNOME
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -84,7 +86,7 @@ function Navbar() {
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
-            variant="h5"
+            variant="h3" // Change typography variant to h4
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
@@ -97,16 +99,17 @@ function Navbar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              fontSize: '5rem', // Increase font size
             }}
           >
-            LOGO
+            CNOME
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', fontSize:'2rem' }}
                 component={Link} to={'/'}
               >
                 {page}
@@ -118,4 +121,5 @@ function Navbar() {
     </AppBar>
   );
 }
+
 export default Navbar;

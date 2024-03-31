@@ -16,7 +16,6 @@ mongoose.connect("mongodb://localhost:27017/cacheDB", {
   useUnifiedTopology: true,
 });
 mongoose.connection.on("connected", async () => {
-  console.log("Connected to MongoDB");
   try {
     // Delete previous entries
     await Cache.deleteMany({});
@@ -28,7 +27,6 @@ mongoose.connection.on("connected", async () => {
 
 // Routes
 app.post("/query", async (req, res) => {
-  console.log(req.body);
   const filedata = req.body.file;
   const analyticsType = req.body.analyticsType;
 
@@ -46,7 +44,7 @@ app.post("/query", async (req, res) => {
 
     // Update accessNo field in the cache entry
     cacheEntry.accessNo = access_no;
-    await cacheEntry.save();
+    await cacheEntry.save(); 
 
     res.json({ analytics: cacheEntry.analytics });
   } catch (error) {
@@ -56,7 +54,6 @@ app.post("/query", async (req, res) => {
 });
 
 app.post("/insert", async (req, res) => {
-  console.log(req.body);
   const filedata = req.body.file;
   const analyticsType = req.body.analyticsType;
   const analytics = JSON.parse(req.body.analytics);
@@ -72,7 +69,6 @@ app.post("/insert", async (req, res) => {
     ); 
     res.json({ success: "Added/Updated record successfully!" });
   } catch (error) {
-    console.error("Error inserting into cache:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
