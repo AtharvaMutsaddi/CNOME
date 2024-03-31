@@ -1,5 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, Typography, Input, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  Typography,
+  Input,
+  TextField,
+  Card,
+} from "@mui/material";
 import { uploadFileKMer as uploadFile } from "../services/api";
 import KMerResponse from "../response-models/KMerResponse";
 import KMerAnalyticsDashboard from "../components/KMerAnalyticsDashboard";
@@ -22,25 +29,37 @@ const KMerAnalytics: React.FC = () => {
   };
 
   return (
-    <>
+    <Card
+      elevation={6}
+      sx={{
+        padding: "2rem",
+        width: "fit-content",
+        margin: "auto",
+        marginTop: "3rem",
+      }}
+    >
       <Container>
         <Typography variant="h3" gutterBottom>
           KMer Analysis
         </Typography>
-        <Input type="file" inputRef={fileInputRef} style={{ blockSize: "3rem" }} />
+        <Input
+          type="file"
+          inputRef={fileInputRef}
+          style={{ blockSize: "3rem", marginBottom: "1rem" }}
+        />
         <TextField
           label="Size of KMers"
           type="number"
           value={kmerSize}
           onChange={(e) => setKmerSize(Number(e.target.value))}
-          style={{ blockSize: "3rem", margin: "1rem 0" }}
+          style={{ blockSize: "3rem", marginBottom: "1rem" }}
         />
         <Button variant="contained" onClick={handleUploadFile}>
           Upload
         </Button>
       </Container>
       {analysis && <KMerAnalyticsDashboard data={analysis} />}
-    </>
+    </Card>
   );
 };
 
