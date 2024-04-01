@@ -270,6 +270,10 @@ void *compute_metric(void *arg)
 }
 std::string similarity_report(std::string genome1, std::string genome2)
 {
+  if (!is_valid_genome(genome1) || !is_valid_genome(genome2))
+  {
+    return get_inputfile_error_message();
+  }
   std::unordered_map<std::string, int> mp;
   pthread_t threads[3];
   ThreadData threadData[3] = {
