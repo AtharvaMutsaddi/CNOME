@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import * as d3 from "d3";
+import { Card, Typography } from "@mui/material";
 import { BarItem } from "./BarItem";
 import SimResponse from "../response-models/SimResponse";
 
@@ -13,12 +14,32 @@ type BarplotProps = {
 };
 
 export const Barplot = ({ width, height, data }: BarplotProps) => {
+  // Calculate average similarity score
+  const averageScore = useMemo(() => {
+    const totalScore = Object.entries(data).reduce(
+      (acc, cur) => acc + cur[1],
+      0
+    );
+    return totalScore / Object.keys(data).length;
+  }, [data]);
+
+  // Determine image and text based on average score
+  let image;
+  let text;
+  if (averageScore < 50) {
+    text = "Not Very Similar";
+  } else if (averageScore >= 50 && averageScore < 90) {
+    text = "Medium Similarity";
+  } else {
+    text = "Very Similar";
+  }
+
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Y axis is for groups since the barplot is horizontal
-  const dataArray=Object.entries(data);
+  const dataArray = Object.entries(data);
   const groups = dataArray.sort((a, b) => b[1] - a[1]).map((d) => d[0]);
   const yScale = useMemo(() => {
     return d3
@@ -30,7 +51,10 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
 
   // X axis
   const max = d3.max(dataArray.map((d) => d[1]));
-  const xScale = d3.scaleLinear().domain([0, max as number]).range([0, boundsWidth]);
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, max as number])
+    .range([0, boundsWidth]);
 
   // Build the shapes
   const allShapes = dataArray.map((d) => {
@@ -48,7 +72,8 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
   });
 
   return (
-    <div>
+    <Card elevation={3} style={{ padding: 20}}>
+
       <svg width={width} height={height}>
         <g
           width={boundsWidth}
@@ -58,6 +83,16 @@ export const Barplot = ({ width, height, data }: BarplotProps) => {
           {allShapes}
         </g>
       </svg>
-    </div>
+        <Typography variant="h3" gutterBottom>
+          Average Similarity
+        </Typography>
+        
+        <Typography variant="h4" style={{ color: "blue" }}>
+          {text}
+        </Typography>
+        <Typography variant="h2" style={{ color: "green" }}>
+          {averageScore}
+        </Typography>
+    </Card>
   );
 };

@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, Typography, Input, TextField } from "@mui/material";
+import { Button, Card, Container, Input, Typography } from "@mui/material";
 import { uploadFileSim as uploadFile } from "../services/api";
 import { Barplot } from "../components/Barplot";
+
 const GeneticSimilarity = () => {
   const fileInputRef1 = useRef<HTMLInputElement>(null);
   const fileInputRef2 = useRef<HTMLInputElement>(null);
   const [sim, setSim] = useState<any>(null);
+
   const handleUploadFile = async () => {
     const file1 = fileInputRef1.current?.files?.[0];
     const file2 = fileInputRef2.current?.files?.[0];
@@ -19,30 +21,39 @@ const GeneticSimilarity = () => {
       }
     }
   };
+
   return (
-    <div>
-      <Typography variant="h3" gutterBottom>
-        KMer Analysis
-      </Typography>
-      <Input
-        type="file"
-        inputRef={fileInputRef1}
-        style={{ blockSize: "3rem" }}
-      />
-      <br />
-      <Input
-        type="file"
-        inputRef={fileInputRef2}
-        style={{ blockSize: "3rem" }}
-      />
-      <Button variant="contained" onClick={handleUploadFile}>
-        Upload
-      </Button>
-      {
-        sim &&
-        <Barplot width={800} height={700} data={sim}></Barplot>
-      }
-    </div>
+    <Container maxWidth="md">
+      <Card elevation={3} style={{ padding: 20, marginBottom: 20 }}>
+        <Typography variant="h3" gutterBottom>
+          Upload Files
+        </Typography>
+        <Input
+          type="file"
+          inputRef={fileInputRef1}
+          style={{ blockSize: "3rem", marginBottom: 10 }}
+        />
+        <br />
+        <Input
+          type="file"
+          inputRef={fileInputRef2}
+          style={{ blockSize: "3rem", marginBottom: 10 }}
+        />
+        <br />
+        <Button variant="contained" onClick={handleUploadFile}>
+          Upload
+        </Button>
+      </Card>
+
+      {sim && (
+        <div style={{ padding: 20}}>
+          <Typography variant="h3" gutterBottom>
+            Similarity Barplot
+          </Typography>
+          <Barplot width={800} height={500} data={sim} />
+        </div>
+      )}
+    </Container>
   );
 };
 
