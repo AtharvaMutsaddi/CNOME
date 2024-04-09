@@ -8,13 +8,13 @@ const {
 
 (async () => {
   const testFiles = [
-    "../tcs/cysticfibrosis_531814_132.txt",
-    "../tcs/broke.txt",
-    "../tcs/nf1_781184_395.txt",
-    "../tcs/big.txt",
-    "../tcs/huntington_8569619_353.txt",
-    "../tcs/hemophilia_519738_452.txt",
-    "../tcs/nf1_796575_475.txt",
+    "../../tcs/cysticfibrosis_531814_132.txt",
+    "../../tcs/broke.txt",
+    "../../tcs/nf1_781184_395.txt",
+    "../../tcs/big.txt",
+    "../../tcs/huntington_8569619_353.txt",
+    "../../tcs/hemophilia_519738_452.txt",
+    "../../tcs/nf1_796575_475.txt",
   ];
 
   // Test case for uploadFileMutations
@@ -61,7 +61,7 @@ const {
   console.log(`Response time for uploadFileKMer: ${responseTimeKMer} ms`);
   
   console.log("Running uploadFileKMer performance test on corrupt file...");
-  const fileContentKMerBroke = fs.readFileSync("../tcs/broke.txt", 'utf-8');
+  const fileContentKMerBroke = fs.readFileSync("../../tcs/broke.txt", 'utf-8');
   const fileKMerBroke = new File([fileContentKMerBroke], 'fileKMerBroke.txt', { type: 'text/plain' });
   
   const startTimeKMerBroke = performance.now();

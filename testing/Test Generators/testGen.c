@@ -12,7 +12,7 @@ typedef struct test_case_metadata{
 
 metadata new_test_case(){
    metadata tc;
-   tc.total_chars=(rand()%(10000001-800000))+500000;
+   tc.total_chars=(rand()%(1000000001-80000000))+500000;
    tc.mutation=mutation_files[(rand()%7)];
    tc.segment_len=(rand()%(501-21))+21;
    return tc;

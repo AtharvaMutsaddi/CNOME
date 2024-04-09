@@ -6,7 +6,8 @@ import proteinImages from "../assets/proteinImages.json";
 
 const ViewGene = () => {
   const geneData: GeneContextType = useGeneContext();
-  const decodedGene = decompress(geneData?.geneData?.gene || "");
+  // const decodedGene = decompress(geneData?.geneData?.gene || "");
+  const decodedGene = (geneData?.geneData?.gene || "");
 
   // Function to render images based on gene components
   const renderProteinImages = (gene: string) => {

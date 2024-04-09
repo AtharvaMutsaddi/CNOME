@@ -137,7 +137,7 @@ export const PieChart = ({ width, height, data }: PieChartProps) => {
       >
         <h1>Pie Chart</h1>
         <p>
-          Showing frequency of occurence of the top 10 KMers of size 21.
+          Showing frequency of occurence of the top 10 KMers of the specified size .
         </p>
       </div>
       <svg width={width} height={height} style={{ display: "inline-block" }}>

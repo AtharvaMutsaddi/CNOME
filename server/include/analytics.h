@@ -14,6 +14,12 @@ struct ThreadData {
     std::unordered_map<std::string, int>* mp;
     double (*metric_function)(const std::string, const std::string);
 };
+struct ThreadMutationData {
+    std::string genome;
+    std::string mutation;
+    std::string mutationname;
+    std::unordered_map<std::string, int> *mp;
+};
 bool KMP_search(std::string genome,std::string mutation);
 bool is_valid_genome(std:: string genome);
 std::string mutations_analysis(std::string genome);
