@@ -23,13 +23,13 @@ const {
     const fileContent = fs.readFileSync(filePath, "utf-8");
     const fileName = filePath.split("/").pop(); // Extracting file name from path
     const file = new File([fileContent], fileName, { type: "text/plain" });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     const startTime = performance.now();
     await uploadFileMutations(file);
     const endTime = performance.now();
 
-    const responseTime = endTime - startTime+2000;
+    const responseTime = endTime - startTime+1000;
     console.log(
       `Response time for uploadFileMutations ${fileName}: ${responseTime} ms`
     );
