@@ -212,7 +212,13 @@ void *compute_metric(void *arg)
 }
 std::string similarity_report(std::string genome1, std::string genome2)
 {
-
+  genome1.erase(std::remove(genome1.begin(), genome1.end(), '\n'), genome1.end());
+  genome2.erase(std::remove(genome2.begin(), genome2.end(), '\n'), genome2.end());
+  
+  if (!is_valid_genome(genome1) || !is_valid_genome(genome2))
+  {
+    return get_inputfile_error_message();
+  }
   std::unordered_map<std::string, int> mp;
   pthread_t threads[3];
   ThreadData threadData[3] = {

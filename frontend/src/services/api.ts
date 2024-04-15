@@ -114,10 +114,13 @@ export const uploadFileSim = async (file1: File, file2: File) => {
   }
 };
 export const uploadFileKMer = async (file: File, kmerSize: number) => {
+  if(kmerSize===0){
+    const errMsg={error:"Kmer Analysis cannot be done on Kmer Size=0.Best results are with size>=21"}
+    return errMsg
+  }
   const fileName=file.name;
   const file_name_split=fileName.split(".")
   const file_ext=file_name_split[file_name_split.length-1]
-
   if(nonUTF8Extensions.includes(file_ext.toLowerCase())){
     const errMsg={error:"invalid file type detected. Please upload filetype which is utf-8 encoded. Example: .txt,.plain files etc"}
     return errMsg

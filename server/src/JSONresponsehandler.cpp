@@ -2,7 +2,7 @@
 
 
 std::string get_inputfile_error_message(){
-  return "{\"Error\":\"input genome file may be corrupted or in a file format not supported... please ensure gene sequence is a valid combination of A,C,T,G\"}";
+  return "{\"error\":\"input genome file may be corrupted or in a file format not supported... please ensure gene sequence is a valid combination of A,C,T,G\"}";
 }
 std::string get_mapped_response_error_message(){
   return "{\"Error\":\"Cannot get mapped response for this analytics method\"}";
