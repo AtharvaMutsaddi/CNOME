@@ -15,13 +15,20 @@ const KMerAnalytics: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [analysis, setAnalysis] = useState<KMerResponse | null>(null);
   const [kmerSize, setKmerSize] = useState<number>(0);
-
+  const [errMsg, setErrMsg] = useState<any>(null);
   const handleUploadFile = async () => {
     const file = fileInputRef.current?.files?.[0];
     if (file) {
       try {
         const resp = await uploadFile(file, kmerSize);
-        setAnalysis(resp);
+        if (!resp.error) {
+          setAnalysis(resp);
+          setErrMsg(null);
+        }
+        else{
+          setAnalysis(null);
+          setErrMsg(resp.error);
+        }
       } catch (error) {
         console.error("Error:", error);
       }
@@ -59,6 +66,12 @@ const KMerAnalytics: React.FC = () => {
         </Button>
       </Container>
       {analysis && <KMerAnalyticsDashboard data={analysis} />}
+      {errMsg && (
+        <div>
+          Error:
+          {errMsg}
+        </div>
+      )}
     </Card>
   );
 };

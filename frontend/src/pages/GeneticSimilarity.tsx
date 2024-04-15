@@ -7,7 +7,7 @@ const GeneticSimilarity = () => {
   const fileInputRef1 = useRef<HTMLInputElement>(null);
   const fileInputRef2 = useRef<HTMLInputElement>(null);
   const [sim, setSim] = useState<any>(null);
-
+  const [errMsg, setErrMsg] = useState<any>(null);
   const handleUploadFile = async () => {
     const file1 = fileInputRef1.current?.files?.[0];
     const file2 = fileInputRef2.current?.files?.[0];
@@ -15,7 +15,14 @@ const GeneticSimilarity = () => {
       try {
         // Assuming your uploadFile function supports passing kmerSize as an argument
         const resp = await uploadFile(file1, file2);
-        setSim(resp);
+        if(!resp.error){
+          setSim(resp);
+          setErrMsg(null);
+        }
+        else{
+          setSim(null);
+          setErrMsg(resp.error)
+        }
       } catch (error) {
         console.error("Error:", error);
       }
@@ -51,6 +58,12 @@ const GeneticSimilarity = () => {
             Similarity Barplot
           </Typography>
           <Barplot width={800} height={500} data={sim} />
+        </div>
+      )}
+      {errMsg && (
+        <div>
+          Error:
+          {errMsg}
         </div>
       )}
     </Container>

@@ -8,7 +8,7 @@ int main(void)
   using namespace httplib;
 
   Server svr;
-  std::cout << "Server Listening on http://localhost:1234" << std::endl;
+  std::cout << "Server Listening on https://localhost:1234" << std::endl;
   svr.Post("/mutations", [&](const Request &req, Response &res)
            {
         res.set_header("Access-Control-Allow-Origin", "*");

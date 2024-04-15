@@ -4,11 +4,12 @@ import { uploadFileMutations as uploadFile } from "../services/api";
 import MutationResponse from "../response-models/MutationResponse";
 import MutationInfo from "../assets/mutationInfo.json";
 import MutationCard from "../components/MutationCard";
+import { error } from "console";
 
 const MutationDetection: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [detection, setDetection] = useState<MutationResponse | null>(null);
-
+  const [errMsg, setErrMsg] = useState<any>(null);
   const createNewResp = (resp: any): MutationResponse => {
     const analysis = new MutationResponse(
       resp["cancer.txt"],
@@ -25,8 +26,16 @@ const MutationDetection: React.FC = () => {
     if (file) {
       try {
         const resp = await uploadFile(file);
-        const analysis = createNewResp(resp);
-        setDetection(analysis);
+        console.log(resp);
+        if (!resp.error) {
+          console.log(resp);
+          const analysis = createNewResp(resp);
+          setDetection(analysis);
+          setErrMsg(null);
+        } else {
+          setDetection(null);
+          setErrMsg(resp.error);
+        }
       } catch (error) {
         console.error("Error:", error);
       }
@@ -73,13 +82,14 @@ const MutationDetection: React.FC = () => {
               <h1>Detected Mutations:</h1>
               {Object.entries(detection).filter(([key, value]) => value === 1)
                 .length > 0 ? (
-                  <ul>
+                <ul>
                   {Object.entries(detection)
                     .filter(([key, value]) => value === 1)
                     .map(([key]) => {
-                      const mutationData =(MutationInfo as any)[key] as any;
+                      const mutationData = (MutationInfo as any)[key] as any;
                       if (mutationData) {
-                        const { name, geneURL, imgURL, description } = mutationData;
+                        const { name, geneURL, imgURL, description } =
+                          mutationData;
                         return (
                           <MutationCard
                             key={key}
@@ -93,7 +103,6 @@ const MutationDetection: React.FC = () => {
                       return null;
                     })}
                 </ul>
-                
               ) : (
                 <p>No mutations detected</p>
               )}
@@ -101,6 +110,12 @@ const MutationDetection: React.FC = () => {
           )}
         </Container>
       </Card>
+      {errMsg && (
+        <div>
+          Error:
+          {errMsg}
+        </div>
+      )}
     </div>
   );
 };
